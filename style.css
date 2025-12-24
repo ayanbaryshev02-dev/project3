@@ -1,122 +1,147 @@
-body {
-  margin: 20px 40px;
-
+/* Основные стили для контейнера статей */
+#articles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-p {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0px;
-  margin-top: 16px;
+/* Карточка отдельной статьи */
+#articles-container > div {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid #eaeaea;
 }
 
-/*--- This is the CSS class for the green rectangular blocks. Note that it uses display: flex ---*/
-.wrapper {
-  display: flex;
-  height: 60px;
-  background-color: green;
-  margin-bottom: 20px;
-  
+#articles-container > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
-/*--- flex: 1 makes it so that the div takes up all available space left in the parent element ---*/
-.redExample {
-  flex: 1;
-  background-color: red;
+/* Заголовок статьи */
+#articles-container h1 {
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 20px 20px 10px;
+  line-height: 1.3;
 }
 
-/*--- Since both .redExample and .blueExample have flex: 1, they will take up an equal amount of space because they meet in the middle ---*/
-.blueExample {
-  flex: 1;
-  background-color: blue;
+#articles-container h1 a {
+  color: #1a1a1a;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-/*--- flex-direction: row-reverse orders all child elements starting from right to left ---*/
-.emptyExample2 {
-  display: flex;
-  flex: 1;
-  flex-direction: row-reverse;
+#articles-container h1 a:hover {
+  color: #d32f2f; /* NY Times красный */
+  text-decoration: underline;
 }
 
-.blueExample2 {
-  width: 80px;
-  background-color: rgb(4, 0, 255);
-}
-
-/* TODO: Add CSS for the rest of your solution below */
-
-.redBlock1 {
-  width: 80px;
-  background-color: red;
-}
-
-.blueBlock1{
-  width: 80px;
-  background-color: rgb(0, 47, 255);
-  margin-left: auto;
-}
-
-.redBlock2{
-  flex: 1;
-  background-color: red;
-
-}
-
-.blueBlock2{
-  width: 80px;
-  background-color: rgb(0, 47, 255);
-  margin-left: auto;
-}
-
-.redBlock3{
-  background-color: red;
-  width: 40px;
-  height: 40px;
-  margin: auto;
-}
-
-.redBlock4{
-  flex: 1;
-  background-color: red;
-  display: flex;
-  align-items: center;
-}
-.blueBlock3{
-  width: 80px;
-  height: 60px;
-  background-color: rgb(0, 47, 255);
-  margin: auto;
-  
-}
-
-.redBlock5{
-  width: 80px;
-  background-color: red;
-  
-}
-
-.blueBlock4{
+/* Изображение статьи */
+#articles-container img {
   width: 100%;
-  background-color: blue;
-  height: 20px;
-  box-shadow: 0 40px 0 0 blue;
-}
-.wrapper1{
-  justify-content: space-between;
-  display: flex;
-  height: 60px;
-  background-color: green;
-  margin-bottom: 20px;
-  gap: 20px;
-}
-.yellowBox{
-  background-color: rgb(255, 174, 0);
-  width: 80px;
-  justify-content: space-around;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  background: #f5f5f5;
 }
 
-.yellowBox1{
-  background-color: rgb(255, 174, 0);
-  width: 400px;
-  justify-content: space-between;
+/* Контент статьи */
+#articles-container p {
+  margin: 0;
+  padding: 12px 20px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Абстракт/описание */
+#articles-container p:first-of-type {
+  font-size: 1rem;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+/* Мета-информация (автор, дата, раздел) */
+#articles-container p:not(:first-of-type) {
+  font-size: 0.9rem;
+  color: #777;
+  padding: 5px 20px;
+}
+
+/* Последний параграф (раздел) */
+#articles-container p:last-child {
+  padding-bottom: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 5px;
+  font-weight: 500;
+  color: #d32f2f;
+}
+
+/* Заголовки для мета-данных */
+#articles-container p strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  #articles-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  #articles-container h1 {
+    font-size: 1.2rem;
+    padding: 15px 15px 10px;
+  }
+  
+  #articles-container img {
+    height: 180px;
+  }
+  
+  #articles-container p {
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #articles-container img {
+    height: 160px;
+  }
+  
+  #articles-container > div {
+    border-radius: 8px;
+  }
+}
+
+/* Анимация загрузки (опционально) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#articles-container > div {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+#articles-container > div:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+#articles-container > div:nth-child(even) {
+  animation-delay: 0.2s;
 }
